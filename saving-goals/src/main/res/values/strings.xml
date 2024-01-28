@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="button_try_again">Try again</string>
+    <string name="top_up_saving_goals_title">Top up saving goals</string>
+    <string name="dialog_title_error_something_went_wrong">Something went wrong</string>
+    <string name="button_create_saving_goal">Create saving goal</string>
+    <string name="dialog_title_congratulations">Congratulations!</string>
+    <string name="text_money_has_been_added_to_your_goal">£%1$s has been added to your goal!</string>
+    <string name="button_ok">OK</string>
+    <string name="text_saved_amount">Saved %1$s%2$s</string>
+
+    <string name="generic_error">Oooops, something went wrong, try again!</string>
+    <string name="error_no_internet">It seems that you have no internet connection, try again!</string>
+    <string name="error_no_enough_funds">It seems that you don\'t have enough funds!</string>
+</resources>
+

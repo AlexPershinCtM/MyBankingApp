@@ -17,8 +17,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyStarlingApp"
 include(":app")
-include(":transactions")
-include(":roundup")
+include(":feed")
 include(":saving-goals")
 include(":core")
-include(":common-ui")
+include(":common")
+include(":common:navigation")
+include(":common:ui")

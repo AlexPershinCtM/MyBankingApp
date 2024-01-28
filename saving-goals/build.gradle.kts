@@ -1,44 +1,52 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    kotlin("android")
+    kotlin("kapt")
+    id("com.android.library")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
     namespace = "com.alexpershin.savinggoals"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
-    defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
+    }
+
 }
 
 dependencies {
 
+    implementation(projects.common.ui)
+    implementation(projects.common.navigation)
+    implementation(projects.core)
+
+    // dagger
+    implementation(libs.daggerRuntime)
+    implementation(libs.daggerCompiler)
+    implementation(libs.daggerHiltRuntime)
+    implementation(libs.daggerHiltNavigationCompose)
+    kapt(libs.daggerHiltCompiler)
+
     implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+
+//    implementation(libs.appcompat)
+//    implementation(libs.material)
+//    testImplementation(libs.junit)
+//    androidTestImplementation(libs.androidx.test.ext.junit)
+//    androidTestImplementation(libs.espresso.core)
+}
+
+kapt {
+    correctErrorTypes = true
 }
