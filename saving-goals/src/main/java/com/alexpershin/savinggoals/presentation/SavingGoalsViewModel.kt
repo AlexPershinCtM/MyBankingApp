@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.alexpershin.core.extentions.parseToString
+import com.alexpershin.core.extentions.setScale
 import com.alexpershin.core.network.StarlingException
 import com.alexpershin.navigation.domain.NavigationDestinations
 import com.alexpershin.navigation.domain.NavigationHandler
@@ -178,7 +179,7 @@ internal class SavingGoalsViewModel @Inject constructor(
     private fun getWeekRoundUpAmount(): Double {
         return requireNotNull(
             savedStateHandle.get<Double>(NavigationDestinations.SavingGoals.KEY_AMOUNT)
-        )
+        ).setScale(2).toDouble()
     }
 
     private fun initialState(): UiState {

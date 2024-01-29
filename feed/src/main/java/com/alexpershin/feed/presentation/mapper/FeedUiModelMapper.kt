@@ -6,6 +6,7 @@ import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.alexpershin.core.extentions.parseToString
 import com.alexpershin.feed.domain.model.Feed
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import java.time.LocalDateTime
@@ -18,7 +19,7 @@ internal class FeedUiModelMapper @Inject constructor() {
         return FeedUiModel(
             id = model.id,
             icon = mapIcon(model.category),
-            amount = String.format("%.2f", model.amount),
+            amount = model.amount.parseToString(),
             currency = mapCurrencySymbol(model.currency),
             sign = mapDirection(model.direction),
             merchant = model.merchant,
@@ -40,7 +41,7 @@ internal class FeedUiModelMapper @Inject constructor() {
      * Ideally this logic should be moved to separate class
      * */
     private fun mapDateTime(dateTime: LocalDateTime): String {
-        val formatter = DateTimeFormatter.ofPattern("DD MMM yyyy HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("DD-MM-yyyy HH:mm")
         return dateTime.format(formatter)
     }
 

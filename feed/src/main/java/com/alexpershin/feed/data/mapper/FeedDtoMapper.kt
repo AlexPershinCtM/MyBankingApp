@@ -12,7 +12,7 @@ internal class FeedDtoMapper @Inject constructor() {
     fun map(dto: FeedDto): Feed {
         return Feed(
             id = dto.feedItemUid,
-            amount = dto.amount.minorUnits.toDouble() / 100f,
+            amount = dto.amount.minorUnits / 100.0,
             currency = dto.amount.currency,
             direction = mapDirection(dto.direction),
             merchant = dto.counterPartyName,

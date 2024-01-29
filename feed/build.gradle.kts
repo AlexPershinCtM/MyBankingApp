@@ -6,12 +6,15 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
+
 android {
     namespace = "com.alexpershin.feed"
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
+
+        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
     }
 
     compileOptions {
@@ -21,6 +24,11 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
+
+    useLibrary("android.test.runner")
+    useLibrary("android.test.base")
+    useLibrary("android.test.mock")
+
     buildFeatures {
         compose = true
     }
@@ -44,11 +52,20 @@ dependencies {
 
     implementation(libs.core.ktx)
 
-//    implementation(libs.appcompat)
-//    implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
-//    androidTestImplementation(libs.espresso.core)
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+
+    testImplementation(libs.junit5Api)
+    testImplementation(libs.junit5Engine)
+    testImplementation(libs.junit5Params)
+    testImplementation(libs.extJUnit)
+    testImplementation(libs.kotlinCoroutinesTest)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+}
+
+tasks.withType<Test>{
+    useJUnitPlatform()
 }
 
 kapt {

@@ -20,6 +20,4 @@ internal class GetFeedUseCaseImpl @Inject constructor(
             categoryUid = categoryUid,
         )
     }
-
-
 }
