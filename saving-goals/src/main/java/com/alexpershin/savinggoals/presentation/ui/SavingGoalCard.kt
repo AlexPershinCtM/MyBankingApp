@@ -16,6 +16,7 @@ import com.alexpershin.savinggoals.R
 import com.alexpershin.savinggoals.presentation.model.SavingGoalUiModel
 import com.alexpershin.ui.components.Components
 import com.alexpershin.ui.spacings
+import com.alexpershin.ui.theme.MyStarlingAppTheme
 
 @Composable
 internal fun SavingGoalCard(
@@ -64,15 +65,17 @@ internal fun SavingGoalCard(
 @Preview
 @Composable
 private fun SavingGoalPreview() {
-    SavingGoalCard(
-        onClick = {},
-        model = SavingGoalUiModel(
-            id = "1",
-            name = "Visit Paris",
-            saved = "2500",
-            target = "5000",
-            currency = "GBP",
-            currencySymbol = SavingGoalUiModel.CurrencySymbol.GBP,
+    MyStarlingAppTheme {
+        SavingGoalCard(
+            onClick = {},
+            model = SavingGoalUiModel(
+                id = "1",
+                name = "Visit Paris",
+                saved = "2500",
+                target = "5000",
+                currency = "GBP",
+                currencySymbol = SavingGoalUiModel.CurrencySymbol.GBP,
+            )
         )
-    )
+    }
 }

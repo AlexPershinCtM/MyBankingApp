@@ -9,12 +9,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import com.alexpershin.feed.R
 import com.alexpershin.ui.components.Components
 import com.alexpershin.ui.spacings
+import com.alexpershin.ui.theme.MyStarlingAppTheme
 
 @Composable
-private fun RoundUpBanner(roundUpAmount: String, onClick: () -> Unit) {
+internal fun RoundUpBanner(roundUpAmount: String, onClick: () -> Unit) {
     Components.cards.OutlinedCard(
         modifier = Modifier
             .fillMaxWidth()
@@ -43,5 +45,13 @@ private fun RoundUpBanner(roundUpAmount: String, onClick: () -> Unit) {
                 textAlign = TextAlign.Center
             )
         }
+    }
+}
+
+@Composable
+@Preview
+fun RoundUpBannerPreview() {
+    MyStarlingAppTheme {
+        RoundUpBanner(roundUpAmount = "18.20") {}
     }
 }

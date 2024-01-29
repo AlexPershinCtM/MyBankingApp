@@ -19,6 +19,7 @@ import com.alexpershin.feed.presentation.model.FeedUiModel
 import com.alexpershin.feed.presentation.model.FeedUiModel.Sign
 import com.alexpershin.ui.components.Components
 import com.alexpershin.ui.spacings
+import com.alexpershin.ui.theme.MyStarlingAppTheme
 
 @Composable
 internal fun FeedCard(
@@ -70,16 +71,18 @@ internal fun FeedCard(
 @Preview
 @Composable
 private fun FeedCardPreview() {
-    FeedCard(
-        onClick = {},
-        model = FeedUiModel(
-            icon = Icons.Rounded.AccountCircle,
-            amount = "22.50",
-            currency = FeedUiModel.CurrencySymbol.GBP,
-            merchant = "Gov.uk",
-            dateTime = "26 Jan 22:30",
-            sign = Sign.Minus,
-            id = "",
+    MyStarlingAppTheme {
+        FeedCard(
+            onClick = {},
+            model = FeedUiModel(
+                icon = Icons.Rounded.AccountCircle,
+                amount = "22.50",
+                currency = FeedUiModel.CurrencySymbol.GBP,
+                merchant = "Gov.uk",
+                dateTime = "26 Jan 22:30",
+                sign = Sign.Minus,
+                id = "",
+            )
         )
-    )
+    }
 }

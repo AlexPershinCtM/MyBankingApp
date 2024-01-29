@@ -54,4 +54,6 @@ dependencies {
     api(libs.composeToolingPreview)
     api(libs.composeMaterial)
     api(libs.composeSwipeToRefresh)
+    debugApi(libs.composeTooling)
+    debugApi(libs.composeManifest)
 }

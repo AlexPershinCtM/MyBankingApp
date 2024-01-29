@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.alexpershin.ui.components.Components
+import com.alexpershin.ui.theme.MyStarlingAppTheme
 import androidx.compose.material3.Button as MaterialButton
 
 object Buttons {
@@ -38,9 +39,11 @@ object Buttons {
 @Preview
 @Composable
 internal fun ContainedButtonPreview() {
-    Components.buttons.ContainedButton(
-        onClick = {},
-        text = "Contained button",
-        modifier = Modifier.fillMaxWidth(),
-    )
+    MyStarlingAppTheme {
+        Components.buttons.ContainedButton(
+            onClick = {},
+            text = "Contained button",
+            modifier = Modifier.fillMaxWidth(),
+        )
+    }
 }

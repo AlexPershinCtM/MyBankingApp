@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="round_up_banner_make_your_dream_real">Make your dream real!</string>
-    <string name="round_aup_banner_transfer_to_your_saving_goal">Transfer this week round up of £%1$s to your saving goal!</string>
+    <string name="round_aup_banner_transfer_to_your_saving_goal">Transfer this week round up of <b>£%1$s</b> to your saving goal!</string>
 
     <string name="feed_title">Feed</string>
 

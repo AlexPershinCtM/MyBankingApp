@@ -38,9 +38,9 @@ Enjoy!
         -  `:core` provides core dependencies to feature modules
         -  `:common-test` provides classes necessary for unit and robolectric testing
 
-##### Diagram
+##### Modules Diagram
 
-Here will be diagram
+<img src="pictures/diagram.png" width="900">
 
 ### Any outgoing work?
 Yes! Although I haven't added unit tests for every class because of limited time, I covered with unit and robolectric tests all classes in `:feed` feature. There are example of tests for Repository, Mapper, Service, UseCase, ViewModel and robolectric test for FeedScreen.
