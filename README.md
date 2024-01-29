@@ -1,6 +1,10 @@
 # About MyStarling app
 App will take all the transactions in a given week and round them up to the nearest pound. For example with spending of £4.35, £5.20 and £0.87, the round-up would be £1.58. This amount should then be transferred into a savings goal, helping the customer save for future adventures.
 
+
+https://github.com/alexandrpershin/CleanArchitecture/assets/26442017/b92174b9-4843-4a9d-b24b-eb6b4abef079
+
+
 ## Features
 
 ### Feed screen
