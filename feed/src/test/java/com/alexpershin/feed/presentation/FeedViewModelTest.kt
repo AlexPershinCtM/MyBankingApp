@@ -8,6 +8,7 @@ import com.alexpershin.feed.domain.usecase.RoundUpUseCase
 import com.alexpershin.feed.presentation.mapper.FeedUiModelMapper
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import com.alexpershin.navigation.domain.CoreNavigationDestinations
+import com.alexpershin.navigation.domain.NavigationCommand
 import com.alexpershin.navigation.domain.NavigationHandler
 import com.alexpershin.test.CoroutineTestExtension
 import com.alexpershin.test.TestException
@@ -190,7 +191,7 @@ internal class FeedViewModelTest {
 
             // then
             coVerify {
-                navigationHandler.navigate(CoreNavigationDestinations.Back)
+                navigationHandler.navigate(NavigationCommand.Back)
             }
         }
 

@@ -12,6 +12,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -21,6 +24,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.alexpershin.feed.R
@@ -31,9 +36,11 @@ import com.alexpershin.feed.presentation.FeedViewModel
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import com.alexpershin.ui.components.Components
 import com.alexpershin.ui.spacings
+import com.alexpershin.ui.theme.MyStarlingAppTheme
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
 
 @Composable
 fun FeedScreen(
@@ -126,8 +133,7 @@ private fun ErrorSection(errorMessage: Int, onRetryClick: () -> Unit) {
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .testTag(FeedScreenTestTags.TryAgainButton)
-            ,
+                .testTag(FeedScreenTestTags.TryAgainButton),
             padding = PaddingValues(
                 horizontal = MaterialTheme.spacings.medium,
                 vertical = MaterialTheme.spacings.large,
@@ -179,3 +185,61 @@ object FeedScreenTestTags {
 }
 
 
+//region Previews
+
+@Composable
+@Preview(name = "No internet error")
+private fun ErrorFeedContentPreview() {
+    MyStarlingAppTheme {
+        FeedContent(
+            uiState = UiState(
+                roundUpAmount = "",
+                isLoading = false,
+                errorMessage = R.string.error_no_internet,
+                feedItems = persistentListOf()
+            )
+        ) {}
+    }
+}
+
+@Composable
+@Preview(name = "Empty state")
+private fun EmptyFeedContentPreview() {
+    MyStarlingAppTheme {
+        FeedContent(
+            uiState = UiState(
+                roundUpAmount = "",
+                isLoading = false,
+                errorMessage = null,
+                feedItems = persistentListOf()
+            )
+        ) {}
+    }
+}
+
+
+@Composable
+@Preview(name = "Success state")
+private fun SuccessFeedContentPreview(@PreviewParameter(FeedContentParamProvider::class) items: ImmutableList<FeedUiModel>) {
+    MyStarlingAppTheme {
+        FeedContent(
+            uiState = UiState(
+                roundUpAmount = "0.86",
+                isLoading = false,
+                errorMessage = null,
+                feedItems = persistentListOf<FeedUiModel>(
+                    FeedUiModel(
+                        id = "",
+                        icon = Icons.Rounded.Home,
+                        amount = "33.14",
+                        currency = FeedUiModel.CurrencySymbol.GBP,
+                        sign = FeedUiModel.Sign.Minus,
+                        merchant = "Asda",
+                        dateTime = "30-01-2024 16:27"
+                    )
+                )
+            )
+        ) {}
+    }
+}
+//endregion
