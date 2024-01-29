@@ -28,6 +28,7 @@ interface SavingGoalsUiContract {
 
     sealed interface UiEvents : BaseUiEvent {
         object DialogDismissed : UiEvents
+        object DialogConfirmed : UiEvents
         object RetryClicked : UiEvents
         object CreateSavingGoalClicked : UiEvents
         object BackPressed : UiEvents

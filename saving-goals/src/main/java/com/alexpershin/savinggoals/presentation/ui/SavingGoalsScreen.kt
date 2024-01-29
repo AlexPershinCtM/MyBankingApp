@@ -81,7 +81,7 @@ fun SavingGoalsContent(
 
                     uiState.showConfirmationDialog -> {
                         ConfirmationDialog(uiState.roundUpAmount) {
-                            uiAction(UiEvents.DialogDismissed)
+                            uiAction(UiEvents.DialogConfirmed)
                         }
                     }
 

@@ -120,6 +120,16 @@ internal class SavingGoalsViewModel @Inject constructor(
                     )
                 }
             }
+            is UiEvents.DialogConfirmed -> viewModelScope.launch {
+                updateUiState {
+                    it.copy(
+                        error = null,
+                        showConfirmationDialog = false
+                    )
+                }
+
+                navigationHandler.navigate(NavigationCommand.Back)
+            }
 
             is UiEvents.BackPressed -> {
                 viewModelScope.launch {
