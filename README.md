@@ -10,11 +10,13 @@ The screen presents the most recent transactions, including details such as the 
 The screen exhibits a list of saving goals, showcasing details such as the goal name, total saved amount, and target. It effectively manages success messages, scenarios where there are no goals listed, and error states. Users are empowered to transfer the roundup amount to any goal or create a new saving goal by simply clicking on the designated button.
 
 ### How to build app?
-Before building app make sure you updated `local.properties` file with secrets:
+Before building app you need to create your Sandbox Customer first. Then update `local.properties` file with secrets:
 
-- `accountUid="YOUR_STARLING_ACCOUNT_UID"`
-- `defaultCategory="YOUR_DEFAULT_CATEGORY"`
-- `accessToken="YOUR_STARLING_ACCESS_TOKEN`
+- `accountUid="YOUR_STARLING_ACCOUNT_UID"` can be found in Accounts API json response on Sandbox page
+- `defaultCategory="YOUR_DEFAULT_CATEGORY"` can be found in Accounts API json response on Sandbox page
+- `accessToken="YOUR_STARLING_ACCESS_TOKEN` can be found in Customer Details on Sandbox page
+
+To simulate some transactions use Postman or Auto-simulator feature on the bottom of Sandbox web page.
 
 Enjoy!
 
@@ -44,9 +46,12 @@ Enjoy!
 
 ### Any outgoing work?
 
-Absolutely! I successfully included unit and Robolectric tests for all classes within the "feed" feature. This includes tests for Repository, Mapper, Service, UseCase, ViewModel, and a Robolectric test specifically for FeedScreen. However, due to time constraints, I couldn't provide coverage for every class within the repository.
+Absolutely! I successfully included unit and Robolectric tests for all classes within the "feed" feature. This includes tests for Repository, Mapper, Service, UseCase, ViewModel, and a Robolectric test specifically for FeedScreen. However, due to time constraints, I couldn't provide coverage for every class within the repository. Im meantime I'll continue some work so don't hesitate to pull changes.
 
 Things to finish:
 - Add documentation
 - Add Compose Espresso tests
-- Ad tests for `:saving-goals` feature
+- Add tests for `:saving-goals` feature
+
+### Questions or Feedback?
+I would be super grateful to hear from you any questions of feedback!
