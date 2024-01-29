@@ -12,9 +12,9 @@ The screen exhibits a list of saving goals, showcasing details such as the goal 
 ### How to build app?
 Before building app make sure you updated `local.properties` file with secrets:
 
-`accountUid="YOUR_STARLING_ACCOUNT_UID"`
-`defaultCategory="YOUR_DEFAULT_CATEGORY"`
-`accessToken="YOUR_STARLING_ACCESS_TOKEN`
+- `accountUid="YOUR_STARLING_ACCOUNT_UID"`
+- `defaultCategory="YOUR_DEFAULT_CATEGORY"`
+- `accessToken="YOUR_STARLING_ACCESS_TOKEN`
 
 Enjoy!
 
@@ -43,7 +43,8 @@ Enjoy!
 <img src="pictures/diagram.png" width="900">
 
 ### Any outgoing work?
-Yes! Although I haven't added unit tests for every class because of limited time, I covered with unit and robolectric tests all classes in `:feed` feature. There are example of tests for Repository, Mapper, Service, UseCase, ViewModel and robolectric test for FeedScreen.
+
+Absolutely! I successfully included unit and Robolectric tests for all classes within the "feed" feature. This includes tests for Repository, Mapper, Service, UseCase, ViewModel, and a Robolectric test specifically for FeedScreen. However, due to time constraints, I couldn't provide coverage for every class within the repository.
 
 Things to finish:
 - Add documentation
