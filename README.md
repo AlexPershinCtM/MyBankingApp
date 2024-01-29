@@ -30,13 +30,13 @@ Enjoy!
 - I used Clean Architecture, however I didn't create interface for every class (like mapper) because it's overkill and for small project like this it not worth it.
 - For presentation layer I used MVVM
 - There are different modules:
-        - `:app` which is entry point for MyStarling app. This module depends on `:feed` and `:saving-goals` feature modules becuase `:app` needs those features. Also it depends on `:common-ui` and `:common-navigation`. 
-        - `:feed` feature module depends on `:common-ui`, `:common-navigation` and `:core`.
-        - `:saving-goals` feature module depends on `:common-ui`, `:common-navigation` and `:core`. 
-        -  `:common-ui` provides UI related classes like Compose and common UI components (e.g. ElevatedCard, AlertDialog)
-        -  `:common-navigation` provides navigation related classes (e.g. NavigationHandler)
-        -  `:core` provides core dependencies to feature modules
-        -  `:common-test` provides classes necessary for unit and robolectric testing
+- `:app` which is entry point for MyStarling app. This module depends on `:feed` and `:saving-goals` feature modules becuase `:app` needs those features. Also it depends on `:common-ui` and `:common-navigation`. 
+- `:feed` feature module depends on `:common-ui`, `:common-navigation` and `:core`.
+- `:saving-goals` feature module depends on `:common-ui`, `:common-navigation` and `:core`. 
+-  `:common-ui` provides UI related classes like Compose and common UI components (e.g. ElevatedCard, AlertDialog)
+-  `:common-navigation` provides navigation related classes (e.g. NavigationHandler)
+-  `:core` provides core dependencies to feature modules
+-  `:common-test` provides classes necessary for unit and robolectric testing
 
 ##### Modules Diagram
 
