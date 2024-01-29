@@ -2,7 +2,6 @@ package com.alexpershin.feed.presentation.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -13,11 +12,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.alexpershin.ui.components.Components
-import com.alexpershin.feed.presentation.model.FeedUiModel.Sign
-import com.alexpershin.ui.spacings
+import androidx.compose.ui.unit.dp
 import com.alexpershin.feed.presentation.model.FeedUiModel
+import com.alexpershin.feed.presentation.model.FeedUiModel.Sign
+import com.alexpershin.ui.components.Components
+import com.alexpershin.ui.spacings
 
 @Composable
 internal fun FeedCard(
@@ -36,23 +37,30 @@ internal fun FeedCard(
                 .fillMaxWidth()
                 .padding(MaterialTheme.spacings.medium)
         ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically
+
+            Icon(model.icon, contentDescription = null, Modifier.align(Alignment.CenterStart))
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(start = 32.dp, end = 50.dp)
+                    .align(Alignment.Center)
             ) {
-                Icon(model.icon, contentDescription = null)
-                Column(
-                    Modifier
-                        .padding(MaterialTheme.spacings.small)
-                ) {
-                    Text(text = model.merchant, style = MaterialTheme.typography.titleSmall)
-                    Text(text = model.dateTime, modifier = Modifier.padding(top = MaterialTheme.spacings.extraSmall))
-                }
+                Text(
+                    text = model.merchant,
+                    style = MaterialTheme.typography.titleSmall,
+                    textAlign = TextAlign.Start
+                )
+                Text(
+                    text = model.dateTime,
+                    modifier = Modifier.padding(top = MaterialTheme.spacings.extraSmall)
+                )
             }
 
             with(model) {
                 Text(
                     text = "${sign.value}$currency$amount",
-                    modifier = Modifier.align(Alignment.CenterEnd)
+                    modifier = Modifier.align(Alignment.CenterEnd),
+                    style = MaterialTheme.typography.bodyMedium,
                 )
             }
         }

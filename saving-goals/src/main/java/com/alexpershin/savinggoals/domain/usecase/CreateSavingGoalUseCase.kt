@@ -1,5 +1,5 @@
 package com.alexpershin.savinggoals.domain.usecase
 
-interface CreateSavingGoalUseCase {
+internal interface CreateSavingGoalUseCase {
     suspend fun execute(): Result<Unit>
 }

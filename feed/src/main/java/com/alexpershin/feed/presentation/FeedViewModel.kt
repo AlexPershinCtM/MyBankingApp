@@ -1,14 +1,14 @@
 package com.alexpershin.feed.presentation
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
 import com.alexpershin.core.extentions.parseToString
-import com.alexpershin.core.network.StarlingException
+import com.alexpershin.core.logging.ErrorLogger
 import com.alexpershin.feed.R
 import com.alexpershin.feed.domain.usecase.GetFeedUseCase
 import com.alexpershin.feed.domain.usecase.RoundUpUseCase
 import com.alexpershin.feed.presentation.mapper.FeedUiModelMapper
-import com.alexpershin.navigation.domain.NavigationDestinations
+import com.alexpershin.navigation.domain.CoreNavigationDestinations
+import com.alexpershin.navigation.domain.NavigationCommand
 import com.alexpershin.navigation.domain.NavigationHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.collections.immutable.persistentListOf
@@ -25,11 +25,14 @@ internal class FeedViewModel @Inject constructor(
     private val getFeedUseCase: GetFeedUseCase,
     private val roundUpUseCase: RoundUpUseCase,
     private val feedUiModelMapper: FeedUiModelMapper,
-    private val navigationHandler: NavigationHandler
+    private val navigationHandler: NavigationHandler,
+    private val errorLogger: ErrorLogger,
 
-) : FeedUiContract.ViewModel() {
+    ) : FeedUiContract.ViewModel() {
 
-    private val TAG = FeedViewModel::class.simpleName
+    private var weekRoundUpAmount: Double? = null
+
+    private val TAG = FeedViewModel::class.simpleName.toString()
 
     override val _uiState: MutableStateFlow<FeedUiContract.UiState> =
         MutableStateFlow(initialState())
@@ -50,8 +53,12 @@ internal class FeedViewModel @Inject constructor(
 
         feedItemsResult
             .onSuccess { items ->
-                val roundUpAmount = roundUpUseCase.execute(items.map { it.amount })
-                val mappedItems = items.map { feedUiModelMapper.map(it) }.toPersistentList()
+                val roundUpAmount = roundUpUseCase.execute(items.map { it.amount }).also {
+                    this.weekRoundUpAmount = it
+                }
+
+                val mappedItems =
+                    items.asSequence().map { feedUiModelMapper.map(it) }.toPersistentList()
                 updateUiState {
                     it.copy(
                         roundUpAmount = roundUpAmount.parseToString(),
@@ -67,7 +74,7 @@ internal class FeedViewModel @Inject constructor(
     }
 
     private fun handleFailure(throwable: Throwable) {
-        Log.e(TAG, throwable.message.toString())
+        errorLogger.e(TAG, throwable.message.toString())
 
         val errorMessage = when (throwable) {
             is UnknownHostException -> {
@@ -93,12 +100,11 @@ internal class FeedViewModel @Inject constructor(
                 handleClickedItem(event)
             }
 
-            is FeedUiContract.UiEvents.BannerClicked -> {
+            is FeedUiContract.UiEvents.RoundUpBannerClicked -> {
                 viewModelScope.launch {
-                    val amountToRoundUp = uiState.value.roundUpAmount.toDouble()
                     navigationHandler.navigate(
-                        NavigationDestinations.SavingGoals.navigate(
-                            amountToRoundUp
+                        CoreNavigationDestinations.SavingGoals.navigate(
+                            requireNotNull(weekRoundUpAmount)
                         )
                     )
                 }
@@ -106,7 +112,7 @@ internal class FeedViewModel @Inject constructor(
 
             is FeedUiContract.UiEvents.BackPressed -> {
                 viewModelScope.launch {
-                    navigationHandler.navigate(NavigationDestinations.Back)
+                    navigationHandler.navigate(NavigationCommand.Back)
                 }
             }
 
@@ -126,7 +132,7 @@ internal class FeedViewModel @Inject constructor(
 
     private fun handleClickedItem(event: FeedUiContract.UiEvents.ItemClicked) {
         val clickedItem = _uiState.value.feedItems.firstOrNull { it.id == event.id }
-        Log.i(TAG, "Clicked: $clickedItem")
+        errorLogger.i(TAG, "Clicked: $clickedItem")
     }
 
     private fun initialState(): FeedUiContract.UiState {

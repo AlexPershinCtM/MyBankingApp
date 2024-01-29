@@ -1,13 +1,14 @@
 package com.alexpershin.savinggoals.presentation.mapper
 
 import com.alexpershin.core.extentions.parseToString
+import com.alexpershin.core.mapper.BaseModelMapper
 import com.alexpershin.savinggoals.domain.model.SavingGoal
 import com.alexpershin.savinggoals.presentation.model.SavingGoalUiModel
 import javax.inject.Inject
 
-internal class SavingGoalUiModelMapper @Inject constructor() {
+    internal class SavingGoalUiModelMapper @Inject constructor() : BaseModelMapper<SavingGoal, SavingGoalUiModel> {
 
-    fun map(model: SavingGoal): SavingGoalUiModel = with(model) {
+    override fun map(model: SavingGoal): SavingGoalUiModel = with(model) {
         return SavingGoalUiModel(
             id = id,
             name = name,

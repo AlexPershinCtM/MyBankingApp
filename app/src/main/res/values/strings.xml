@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyStarlingApp</string>
+    <string name="error_no_internet">It seems that you have no internet connection, try again!</string>
 </resources>

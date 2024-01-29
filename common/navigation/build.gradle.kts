@@ -43,29 +43,12 @@ android {
 }
 
 dependencies {
-    api(libs.core.ktx)
-//    api(libs.appcompat)
-//    api(libs.material)
-
-    api(platform(libs.composeBom))
-    implementation(libs.composeNavigation)
-
     // dagger
     implementation(libs.daggerRuntime)
     implementation(libs.daggerCompiler)
     implementation(libs.daggerHiltRuntime)
     implementation(libs.daggerHiltNavigationCompose)
     kapt(libs.daggerHiltCompiler)
-
-//    api(libs.composeUi)
-//    api(libs.lifecycleRuntimeCompose)
-//    api(libs.activityCompose)
-
-    // TODO where the tests should be?
-//    debugImplementation(libs.composeTooling)
-//    debugImplementation(libs.composeManifest)
-
-//    testImplementation(libs.junit)
 }
 
 kapt {

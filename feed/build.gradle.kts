@@ -1,11 +1,9 @@
-
 plugins {
     kotlin("android")
     kotlin("kapt")
     id("com.android.library")
     id("dagger.hilt.android.plugin")
 }
-
 
 android {
     namespace = "com.alexpershin.feed"
@@ -38,7 +36,6 @@ android {
 }
 
 dependencies {
-
     implementation(projects.common.ui)
     implementation(projects.common.navigation)
     implementation(projects.core)
@@ -50,18 +47,10 @@ dependencies {
     implementation(libs.daggerHiltNavigationCompose)
     kapt(libs.daggerHiltCompiler)
 
-    implementation(libs.core.ktx)
+    implementation(libs.lifecycleRuntimeKtx)
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-
-    testImplementation(libs.junit5Api)
-    testImplementation(libs.junit5Engine)
-    testImplementation(libs.junit5Params)
-    testImplementation(libs.extJUnit)
-    testImplementation(libs.kotlinCoroutinesTest)
-    testImplementation(libs.mockk)
-    testImplementation(libs.turbine)
+    // unit tests
+    testImplementation(projects.common.test)
 }
 
 tasks.withType<Test>{

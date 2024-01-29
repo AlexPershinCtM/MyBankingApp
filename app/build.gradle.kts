@@ -54,10 +54,15 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
-
     implementation(projects.common.ui)
     implementation(projects.common.navigation)
     implementation(projects.feed)
@@ -72,11 +77,12 @@ dependencies {
     implementation(libs.daggerHiltNavigationCompose)
     kapt(libs.daggerHiltCompiler)
 
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // unit tests
+    testImplementation(projects.common.test)
+    testImplementation(libs.composeTest)
+    testImplementation(libs.composeManifest)
+    testImplementation(libs.kotlinCollections)
+    testImplementation(projects.core)
 }
 
 kapt {

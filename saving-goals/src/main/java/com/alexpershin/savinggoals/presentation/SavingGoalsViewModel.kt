@@ -6,7 +6,8 @@ import androidx.lifecycle.viewModelScope
 import com.alexpershin.core.extentions.parseToString
 import com.alexpershin.core.extentions.setScale
 import com.alexpershin.core.network.StarlingException
-import com.alexpershin.navigation.domain.NavigationDestinations
+import com.alexpershin.navigation.domain.CoreNavigationDestinations
+import com.alexpershin.navigation.domain.NavigationCommand
 import com.alexpershin.navigation.domain.NavigationHandler
 import com.alexpershin.savinggoals.R
 import com.alexpershin.savinggoals.domain.usecase.AddMoneySavingGoalUseCase
@@ -59,7 +60,7 @@ internal class SavingGoalsViewModel @Inject constructor(
             .onSuccess { items ->
                 val roundUpAmount = getWeekRoundUpAmount()
 
-                val mappedItems = items.map { uiModelMapper.map(it) }.toPersistentList()
+                val mappedItems = items.asSequence().map { uiModelMapper.map(it) }.toPersistentList()
                 updateUiState {
                     it.copy(
                         savingGoalItems = mappedItems,
@@ -122,7 +123,7 @@ internal class SavingGoalsViewModel @Inject constructor(
 
             is UiEvents.BackPressed -> {
                 viewModelScope.launch {
-                    navigationHandler.navigate(NavigationDestinations.Back)
+                    navigationHandler.navigate(NavigationCommand.Back)
                 }
             }
 
@@ -178,7 +179,7 @@ internal class SavingGoalsViewModel @Inject constructor(
 
     private fun getWeekRoundUpAmount(): Double {
         return requireNotNull(
-            savedStateHandle.get<Double>(NavigationDestinations.SavingGoals.KEY_AMOUNT)
+            savedStateHandle.get<Double>(CoreNavigationDestinations.SavingGoals.KEY_AMOUNT)
         ).setScale(2).toDouble()
     }
 

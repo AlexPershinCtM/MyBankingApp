@@ -11,7 +11,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.alexpershin.ui.theme.MyStarlingAppTheme
 import com.alexpershin.feed.presentation.ui.FeedScreen
-import com.alexpershin.navigation.domain.NavigationDestinations
+import com.alexpershin.navigation.domain.CoreNavigationDestinations
+import com.alexpershin.navigation.domain.NavigationCommand
 import com.alexpershin.navigation.domain.NavigationHandler
 import com.alexpershin.savinggoals.presentation.ui.SavingGoalsScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,14 +37,14 @@ class MainActivity : ComponentActivity() {
             MyStarlingAppTheme {
                 NavHost(
                     navController = navController,
-                    startDestination = NavigationDestinations.Feed.route
+                    startDestination = CoreNavigationDestinations.Feed.route
                 ) {
-                    composable(NavigationDestinations.Feed.route) {
+                    composable(CoreNavigationDestinations.Feed.route) {
                         FeedScreen()
                     }
                     composable(
-                        route = NavigationDestinations.SavingGoals.route,
-                        arguments = NavigationDestinations.SavingGoals.arguments) {
+                        route = CoreNavigationDestinations.SavingGoals.route,
+                        arguments = CoreNavigationDestinations.SavingGoals.navArguments) {
                         SavingGoalsScreen()
                     }
                 }
@@ -56,7 +57,7 @@ class MainActivity : ComponentActivity() {
         LaunchedEffect(navigationHandler.currentRoute) {
             navigationHandler.currentRoute.collectLatest {
                 when (it) {
-                    is NavigationDestinations.Back -> {
+                    is NavigationCommand.Back -> {
                         handleBackPress(navController)
                     }
                     else -> {

@@ -1,15 +1,17 @@
 package com.alexpershin.feed.data.mapper
 
-import com.alexpershin.feed.data.model.FeedDto
+import com.alexpershin.core.mapper.BaseModelMapper
+import com.alexpershin.feed.data.model.FeedResponse
+import com.alexpershin.feed.data.model.FeedResponse.FeedDto
 import com.alexpershin.feed.domain.model.Feed
 import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import javax.inject.Inject
 
 
-internal class FeedDtoMapper @Inject constructor() {
+internal class FeedDtoMapper @Inject constructor() : BaseModelMapper<FeedDto, Feed> {
 
-    fun map(dto: FeedDto): Feed {
+    override fun map(dto: FeedDto): Feed {
         return Feed(
             id = dto.feedItemUid,
             amount = dto.amount.minorUnits / 100.0,

@@ -1,12 +1,13 @@
 package com.alexpershin.savinggoals.data.mapper
 
+import com.alexpershin.core.mapper.BaseModelMapper
 import com.alexpershin.savinggoals.data.model.SavingGoalsResponse.SavingsGoalDto
 import com.alexpershin.savinggoals.domain.model.SavingGoal
 import javax.inject.Inject
 
-internal class SavingGoalsDtoMapper @Inject constructor() {
+internal class SavingGoalsDtoMapper @Inject constructor() : BaseModelMapper<SavingsGoalDto, SavingGoal> {
 
-    fun map(dto: SavingsGoalDto): SavingGoal {
+    override fun map(dto: SavingsGoalDto): SavingGoal {
         return SavingGoal(
             id = dto.savingsGoalUid,
             name = dto.name,

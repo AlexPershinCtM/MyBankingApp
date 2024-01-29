@@ -1,5 +1,8 @@
 package com.alexpershin.savinggoals.data.model
 
+import androidx.annotation.Keep
+
+@Keep
 data class SavingGoalsResponse(
     val savingsGoalList: List<SavingsGoalDto>
 ) {
@@ -22,7 +25,6 @@ data class SavingGoalsResponse(
             val minorUnits: Long
         )
     }
-
 }
 
 

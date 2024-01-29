@@ -18,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -89,7 +90,7 @@ fun FeedContent(
 
                     else -> {
                         RoundUpBanner(uiState.roundUpAmount) {
-                            uiAction(UiEvents.BannerClicked)
+                            uiAction(UiEvents.RoundUpBannerClicked)
                         }
 
                         FeedItems(uiState.feedItems) { id ->
@@ -102,37 +103,6 @@ fun FeedContent(
     }
 }
 
-@Composable
-private fun RoundUpBanner(roundUpAmount: String, onClick: () -> Unit) {
-    Components.cards.OutlinedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = MaterialTheme.spacings.medium),
-        onClick = onClick
-    ) {
-        Column {
-            Components.text.Text(
-                text = stringResource(R.string.round_up_banner_make_your_dream_real),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(MaterialTheme.spacings.medium),
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleMedium
-            )
-
-            Components.text.Text(
-                text = stringResource(
-                    R.string.round_aup_banner_transfer_to_your_saving_goal,
-                    roundUpAmount
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(MaterialTheme.spacings.medium),
-                textAlign = TextAlign.Center
-            )
-        }
-    }
-}
 
 @Composable
 private fun ErrorSection(errorMessage: Int, onRetryClick: () -> Unit) {
@@ -155,7 +125,9 @@ private fun ErrorSection(errorMessage: Int, onRetryClick: () -> Unit) {
             onClick = onRetryClick,
             modifier = Modifier
                 .fillMaxWidth()
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomCenter)
+                .testTag(FeedScreenTestTags.TryAgainButton)
+            ,
             padding = PaddingValues(
                 horizontal = MaterialTheme.spacings.medium,
                 vertical = MaterialTheme.spacings.large,
@@ -201,5 +173,9 @@ private fun FeedItems(
     }
 }
 
+object FeedScreenTestTags {
+    const val RoundUpBanner = "RoundUpBannerTestTag"
+    const val TryAgainButton = "TryAgainButtonTestTag"
+}
 
 

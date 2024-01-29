@@ -13,8 +13,18 @@ class FeedUiModelMapperTest {
     private val sut = FeedUiModelMapper()
 
     @Test
-    fun `map Feed model to FeedUiModel`() {
+    fun `WHEN operation=In, THENmap Feed model to FeedUiModel`() {
         // given
+        val feedMode = Feed(
+            id = "3",
+            amount = 14.25,
+            currency = "GBP",
+            direction = Feed.Direction.In,
+            merchant = "Asda",
+            category = Feed.Category.Groceries,
+            dateTime = LocalDateTime.of(2024, 1, 29, 0, 6, 1)
+        )
+
         val expected = FeedUiModel(
             id = "3",
             icon = Icons.Rounded.ShoppingCart,
@@ -34,17 +44,35 @@ class FeedUiModelMapperTest {
         )
     }
 
-
-    private companion object {
-        private val feedMode = Feed(
+    @Test
+    fun `WHEN operation=Out, THENmap Feed model to FeedUiModel`() {
+        // given
+        val feedMode = Feed(
             id = "3",
             amount = 14.25,
             currency = "GBP",
-            direction = Feed.Direction.In,
+            direction = Feed.Direction.Out,
             merchant = "Asda",
             category = Feed.Category.Groceries,
             dateTime = LocalDateTime.of(2024, 1, 29, 0, 6, 1)
         )
-    }
 
+        val expected = FeedUiModel(
+            id = "3",
+            icon = Icons.Rounded.ShoppingCart,
+            amount = "14,25",
+            currency = FeedUiModel.CurrencySymbol.GBP,
+            sign = FeedUiModel.Sign.Minus,
+            merchant = "Asda",
+            dateTime = "29-01-2024 00:06"
+        )
+        // when
+        val result = sut.map(feedMode)
+
+        // then
+        assertEquals(
+            result,
+            expected
+        )
+    }
 }

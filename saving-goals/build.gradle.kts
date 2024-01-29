@@ -22,11 +22,9 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
-
 }
 
 dependencies {
-
     implementation(projects.common.ui)
     implementation(projects.common.navigation)
     implementation(projects.core)
@@ -37,14 +35,6 @@ dependencies {
     implementation(libs.daggerHiltRuntime)
     implementation(libs.daggerHiltNavigationCompose)
     kapt(libs.daggerHiltCompiler)
-
-    implementation(libs.core.ktx)
-
-//    implementation(libs.appcompat)
-//    implementation(libs.material)
-//    testImplementation(libs.junit)
-//    androidTestImplementation(libs.androidx.test.ext.junit)
-//    androidTestImplementation(libs.espresso.core)
 }
 
 kapt {

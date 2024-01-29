@@ -7,15 +7,16 @@ import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.alexpershin.core.extentions.parseToString
+import com.alexpershin.core.mapper.BaseModelMapper
 import com.alexpershin.feed.domain.model.Feed
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-internal class FeedUiModelMapper @Inject constructor() {
+    internal class FeedUiModelMapper @Inject constructor() : BaseModelMapper<Feed, FeedUiModel> {
 
-    fun map(model: Feed): FeedUiModel {
+    override fun map(model: Feed): FeedUiModel {
         return FeedUiModel(
             id = model.id,
             icon = mapIcon(model.category),

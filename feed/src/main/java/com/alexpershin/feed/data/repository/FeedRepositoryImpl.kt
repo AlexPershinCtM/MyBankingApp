@@ -19,7 +19,7 @@ internal class FeedRepositoryImpl @Inject constructor(
             val result = feedService.fetchFeed(
                 accountUid = accountUid,
                 categoryUid = categoryUid,
-            ).await()
+            )
 
             if (result.isSuccessful) {
                 val items = requireNotNull(result.body()).feedItems

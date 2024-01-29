@@ -84,10 +84,7 @@ internal class SavingGoalsRepositoryImpl @Inject constructor(
     }
 
     private fun mapAddMoneyToSavingGoalError(errorBody: ResponseBody, code: Int): Result<Unit> {
-        val gson = Gson()
-        val errorString = errorBody.string()
-        val errorResponse =
-            gson.fromJson(errorString, AddMoneyToSavingGoalErrorResponse::class.java)
+        val errorResponse = parseErrorResponse<AddMoneyToSavingGoalErrorResponse>(errorBody)
 
         return if (errorResponse.errors.firstOrNull()?.message == "INSUFFICIENT_FUNDS") {
             Result.failure(StarlingException.InsufficientFunds)
@@ -111,6 +108,12 @@ internal class SavingGoalsRepositoryImpl @Inject constructor(
         } catch (t: Throwable) {
             Result.failure(t)
         }
+    }
 
+    private inline fun <reified T> parseErrorResponse(errorBody: ResponseBody): T {
+        val gson = Gson()
+        val errorString = errorBody.string()
+
+        return gson.fromJson(errorString, T::class.java)
     }
 }

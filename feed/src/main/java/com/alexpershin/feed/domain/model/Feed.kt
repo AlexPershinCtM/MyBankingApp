@@ -2,7 +2,7 @@ package com.alexpershin.feed.domain.model
 
 import java.time.LocalDateTime
 
-class Feed(
+data class Feed(
     val id: String,
     val amount: Double,
     val currency: String,
@@ -18,7 +18,6 @@ class Feed(
 
     sealed interface Category {
         object Groceries : Category
-        object Travel : Category
         object Health : Category
         object Savings : Category
         object Payments : Category

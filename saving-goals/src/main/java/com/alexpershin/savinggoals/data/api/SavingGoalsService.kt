@@ -15,7 +15,6 @@ interface SavingGoalsService {
         @Path(ACCOUNT_UID_PARAM) accountUid: String,
     ): Deferred<Response<SavingGoalsResponse>>
 
-
     @PUT("/api/v2/account/{$ACCOUNT_UID_PARAM}/savings-goals/{$SAVING_GOAL_UID_PARAM}/add-money/{$TRANSFER_UID_PARAM}")
     fun addMoneyToSavingGoal(
         @Path(ACCOUNT_UID_PARAM) accountUid: String,

@@ -1,7 +1,6 @@
 package com.alexpershin.feed.presentation
 
 import androidx.annotation.StringRes
-import androidx.annotation.StyleRes
 import androidx.compose.runtime.Immutable
 import com.alexpershin.core.ui.base.BaseUiEvent
 import com.alexpershin.core.ui.base.BaseUiState
@@ -25,7 +24,7 @@ interface FeedUiContract {
         object RetryClicked : UiEvents
         object BackPressed : UiEvents
         object PullToRefresh : UiEvents
-        object BannerClicked : UiEvents
+        object RoundUpBannerClicked : UiEvents
         data class ItemClicked(val id: String) : UiEvents
     }
 
