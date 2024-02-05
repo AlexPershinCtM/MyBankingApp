@@ -23,15 +23,15 @@ android {
 }
 
 dependencies {
-    api(libs.junit5Api)
-    api(libs.junit5Engine)
-    api(libs.junit5Params)
-    api(libs.extJUnit)
-    api(libs.kotlinCoroutinesTest)
-    api(libs.mockk)
-    api(libs.turbine)
-    api(libs.robolectric)
-    api(libs.mockWebServer)
-    api(libs.retrofitGsonConverter)
-    api(libs.retrofitCoroutinesAdapter)
+    testApi(libs.junit5Api)
+    testApi(libs.junit5Engine)
+    testApi(libs.junit5Params)
+    testApi(libs.extJUnit)
+    testApi(libs.kotlinCoroutinesTest)
+    testApi(libs.mockk)
+    testApi(libs.turbine)
+    testApi(libs.robolectric)
+    testApi(libs.mockWebServer)
+    testApi(libs.retrofitGsonConverter)
+    testApi(libs.retrofitCoroutinesAdapter)
 }

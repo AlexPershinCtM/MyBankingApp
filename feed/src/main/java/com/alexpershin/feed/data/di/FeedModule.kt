@@ -5,11 +5,6 @@ import com.alexpershin.core.network.retrofit.RetrofitFactory
 import com.alexpershin.feed.data.api.FeedService
 import com.alexpershin.feed.data.repository.FeedRepositoryImpl
 import com.alexpershin.feed.domain.repository.FeedRepository
-import com.alexpershin.feed.domain.usecase.GetFeedUseCase
-import com.alexpershin.feed.domain.usecase.RoundUpUseCase
-import com.alexpershin.feed.domain.usecase.impl.GetFeedUseCaseImpl
-import com.alexpershin.feed.domain.usecase.impl.RoundUpUseCaseImpl
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,7 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Singleton
 
-@Module(includes = [FeedModule.Internal::class])
+@Module
 @InstallIn(SingletonComponent::class)
 class FeedModule {
 
@@ -44,16 +39,8 @@ class FeedModule {
             .create(FeedService::class.java)
     }
 
-    @Module
-    @InstallIn(SingletonComponent::class)
-    internal interface Internal {
-        @Binds
-        fun bindFeedRepository(impl: FeedRepositoryImpl): FeedRepository
+    @Provides
+    @Singleton
+    internal fun providesFeedRepository(impl: FeedRepositoryImpl): FeedRepository = impl
 
-        @Binds
-        fun bindGetFeedUseCase(impl: GetFeedUseCaseImpl): GetFeedUseCase
-
-        @Binds
-        fun bindRoundUpUseCase(impl: RoundUpUseCaseImpl): RoundUpUseCase
-    }
 }

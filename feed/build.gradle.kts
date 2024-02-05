@@ -12,7 +12,7 @@ android {
     defaultConfig {
         minSdk = libs.versions.minSdk.get().toInt()
 
-        testInstrumentationRunner = libs.versions.testInstrumentationRunner.get()
+        testInstrumentationRunner = "com.alexpershin.base.HiltTestRunner"
     }
 
     compileOptions {
@@ -33,12 +33,18 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtensionVersion.get()
     }
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
 }
 
 dependencies {
     implementation(projects.common.ui)
     implementation(projects.common.navigation)
     implementation(projects.core)
+    implementation(libs.androidx.runner)
+
+    implementation(libs.kotlinReflect)
 
     // dagger
     implementation(libs.daggerRuntime)
@@ -51,6 +57,17 @@ dependencies {
 
     // unit tests
     testImplementation(projects.common.test)
+
+    // android test
+    androidTestImplementation(libs.mockkAndroid)
+    androidTestImplementation(libs.mockkAndroidAgent)
+    androidTestImplementation(libs.kotlinCollections)
+    androidTestImplementation(libs.composeTest)
+    androidTestImplementation(libs.composeManifest)
+    debugImplementation(libs.composeManifest)
+    androidTestImplementation(libs.daggerAndroidTest)
+    kaptAndroidTest(libs.daggerHiltAndroidCompiler)
+    kaptAndroidTest(libs.daggerHiltCompiler)
 }
 
 tasks.withType<Test>{
