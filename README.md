@@ -50,10 +50,9 @@ Enjoy!
 
 ### Any outgoing work?
 
-Absolutely! I successfully included unit and Robolectric tests for all classes within the "feed" feature. This includes tests for Repository, Mapper, Service, UseCase, ViewModel, and a Robolectric test specifically for FeedScreen. Also I added Compose Expresso tests for FeedScreen. However, due to time constraints, I couldn't provide coverage for every class within the repository. Im meantime I'll continue some work so don't hesitate to pull changes.
+Absolutely! I successfully included unit, espresso and Robolectric tests for all classes within the `:feed` feature. This includes tests for Repository, Mapper, Service, UseCase, ViewModel, and a Robolectric test specifically for FeedScreen. However, due to time constraints, I couldn't provide coverage for every class within the repository. Im meantime I'll continue some work so don't hesitate to pull changes.
 
 Things to finish:
-- Add documentation
 - Add tests for `:saving-goals` feature
 
 ### Questions or Feedback?
