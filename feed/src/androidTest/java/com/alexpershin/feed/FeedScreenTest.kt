@@ -1,23 +1,16 @@
 package com.alexpershin.feed
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AccountCircle
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import androidx.compose.ui.test.performClick
 import com.alexpershin.base.UiComposeTestBase
+import com.alexpershin.base.value
 import com.alexpershin.core.logging.ErrorLogger
-import com.alexpershin.feed.di.value
 import com.alexpershin.feed.domain.model.Feed
 import com.alexpershin.feed.domain.usecase.GetFeedUseCase
 import com.alexpershin.feed.domain.usecase.RoundUpUseCase
-import com.alexpershin.feed.presentation.FeedUiContract
 import com.alexpershin.feed.presentation.FeedViewModel
 import com.alexpershin.feed.presentation.mapper.FeedUiModelMapper
-import com.alexpershin.feed.presentation.model.FeedUiModel
 import com.alexpershin.feed.presentation.ui.FeedScreen
 import com.alexpershin.feed.presentation.ui.FeedScreenTestTags
 import com.alexpershin.navigation.domain.NavigationHandler
