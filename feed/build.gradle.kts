@@ -13,6 +13,10 @@ android {
         minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "com.alexpershin.base.HiltTestRunner"
+
+        testInstrumentationRunnerArguments += mapOf(
+            "clearPackageData" to "true",
+        )
     }
 
     compileOptions {
@@ -36,6 +40,10 @@ android {
     packagingOptions {
         resources.excludes.add("META-INF/*")
     }
+
+//    testOptions { // TODO fix, ui tests not starting with this config
+//        execution = "ANDROIDX_TEST_ORCHESTRATOR"
+//    }
 }
 
 dependencies {
@@ -58,7 +66,9 @@ dependencies {
     // unit tests
     testImplementation(projects.common.test)
 
-    // android test
+    // android test TODO move dependencies to :common:ui-test
+    androidTestImplementation(libs.androidTestRunner)
+    androidTestUtil(libs.testOrchestrator)
     androidTestImplementation(libs.mockkAndroid)
     androidTestImplementation(libs.mockkAndroidAgent)
     androidTestImplementation(libs.kotlinCollections)

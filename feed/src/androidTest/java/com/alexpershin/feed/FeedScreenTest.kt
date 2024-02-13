@@ -68,7 +68,7 @@ class FeedScreenTest : UiComposeTestBase() {
         createViewModel()
 
         // when
-        composeTestRule.setContent {
+        setContent {
             FeedScreen(viewModel)
         }
 
@@ -87,7 +87,7 @@ class FeedScreenTest : UiComposeTestBase() {
         createViewModel()
 
         // when
-        composeTestRule.setContent {
+        setContent {
             FeedScreen(viewModel)
         }
 
@@ -107,7 +107,7 @@ class FeedScreenTest : UiComposeTestBase() {
         createViewModel()
 
         // when
-        composeTestRule.setContent {
+        setContent {
             FeedScreen(viewModel)
         }
 

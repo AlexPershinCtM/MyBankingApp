@@ -34,6 +34,8 @@ extJUnitVersion = "1.1.5"
 mockkVersion = "1.13.3"
 turbineVersion = "1.0.0"
 robolectricVersion = "4.11.1"
+testOrchestratorVersion = "1.1.0"
+androidTestRunnerVersion = "1.1.0"
 okHttpVersion = "4.11.0"
 gsonVersion = "2.8.6"
 runnerVersion = "1.5.2"
@@ -82,6 +84,10 @@ mockkAndroidAgent = { module = "io.mockk:mockk-agent", version.ref = "mockkVersi
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectricVersion" }
 mockWebServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okHttpVersion" }
+
+#Ui testing
+testOrchestrator = { module = "androidx.test:orchestrator", version.ref = "testOrchestratorVersion" }
+androidTestRunner = { module = "androidx.test:runner", version.ref = "androidTestRunnerVersion" }
 
 #dagger
 daggerRuntime = { module = "com.google.dagger:dagger", version.ref = "daggerVersion" }

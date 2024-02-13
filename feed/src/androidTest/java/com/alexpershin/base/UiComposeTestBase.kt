@@ -7,7 +7,8 @@ import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
 
-// TODO extract into common:test
+// TODO extract into common:ui-test
+
 @HiltAndroidTest
 open class UiComposeTestBase() {
 
