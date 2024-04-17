@@ -17,7 +17,7 @@ class FeedUiModelMapperTest {
         // given
         val feedMode = Feed(
             id = "3",
-            amount = 14.25,
+            amountMinors = 1425,
             currency = "GBP",
             direction = Feed.Direction.In,
             merchant = "Asda",
@@ -28,7 +28,7 @@ class FeedUiModelMapperTest {
         val expected = FeedUiModel(
             id = "3",
             icon = Icons.Rounded.ShoppingCart,
-            amount = "14,25",
+            amount = "14.25",
             currency = FeedUiModel.CurrencySymbol.GBP,
             sign = FeedUiModel.Sign.Plus,
             merchant = "Asda",
@@ -47,9 +47,9 @@ class FeedUiModelMapperTest {
     @Test
     fun `WHEN operation=Out, THENmap Feed model to FeedUiModel`() {
         // given
-        val feedMode = Feed(
+        val feedModel = Feed(
             id = "3",
-            amount = 14.25,
+            amountMinors = 1425,
             currency = "GBP",
             direction = Feed.Direction.Out,
             merchant = "Asda",
@@ -60,14 +60,14 @@ class FeedUiModelMapperTest {
         val expected = FeedUiModel(
             id = "3",
             icon = Icons.Rounded.ShoppingCart,
-            amount = "14,25",
+            amount = "14.25",
             currency = FeedUiModel.CurrencySymbol.GBP,
             sign = FeedUiModel.Sign.Minus,
             merchant = "Asda",
             dateTime = "29-01-2024 00:06"
         )
         // when
-        val result = sut.map(feedMode)
+        val result = sut.map(feedModel)
 
         // then
         assertEquals(

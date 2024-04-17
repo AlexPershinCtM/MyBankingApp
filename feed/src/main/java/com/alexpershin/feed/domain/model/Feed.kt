@@ -4,7 +4,7 @@ import java.time.LocalDateTime
 
 data class Feed(
     val id: String,
-    val amount: Double,
+    val amountMinors: AmountMinors,
     val currency: String,
     val direction: Direction,
     val merchant: String,

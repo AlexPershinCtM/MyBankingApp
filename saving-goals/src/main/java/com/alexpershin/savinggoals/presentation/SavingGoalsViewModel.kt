@@ -3,8 +3,8 @@ package com.alexpershin.savinggoals.presentation
 import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.alexpershin.core.extentions.parseToString
-import com.alexpershin.core.extentions.setScale
+import com.alexpershin.core.extentions.AmountMinors
+import com.alexpershin.core.extentions.stringRepresentation
 import com.alexpershin.core.network.StarlingException
 import com.alexpershin.navigation.domain.CoreNavigationDestinations
 import com.alexpershin.navigation.domain.NavigationCommand
@@ -64,7 +64,7 @@ internal class SavingGoalsViewModel @Inject constructor(
                 updateUiState {
                     it.copy(
                         savingGoalItems = mappedItems,
-                        roundUpAmount = roundUpAmount.parseToString(),
+                        roundUpAmount = roundUpAmount.stringRepresentation(),
                         isLoading = false,
                         error = null
                     )
@@ -187,10 +187,10 @@ internal class SavingGoalsViewModel @Inject constructor(
         }
     }
 
-    private fun getWeekRoundUpAmount(): Double {
+    private fun getWeekRoundUpAmount(): AmountMinors {
         return requireNotNull(
-            savedStateHandle.get<Double>(CoreNavigationDestinations.SavingGoals.KEY_AMOUNT)
-        ).setScale(2).toDouble()
+            savedStateHandle.get<AmountMinors>(CoreNavigationDestinations.SavingGoals.KEY_AMOUNT)
+        )
     }
 
     private fun initialState(): UiState {

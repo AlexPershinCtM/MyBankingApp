@@ -21,6 +21,7 @@ interface FeedUiContract {
     ) : BaseUiState
 
     sealed interface UiEvents : BaseUiEvent {
+        object OnResume : UiEvents
         object RetryClicked : UiEvents
         object BackPressed : UiEvents
         object PullToRefresh : UiEvents

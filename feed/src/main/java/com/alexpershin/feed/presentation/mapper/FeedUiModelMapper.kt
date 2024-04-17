@@ -1,14 +1,13 @@
 package com.alexpershin.feed.presentation.mapper
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.alexpershin.core.extentions.parseToString
 import com.alexpershin.core.mapper.BaseModelMapper
 import com.alexpershin.feed.domain.model.Feed
+import com.alexpershin.feed.domain.model.stringRepresentation
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -20,7 +19,7 @@ import javax.inject.Inject
         return FeedUiModel(
             id = model.id,
             icon = mapIcon(model.category),
-            amount = model.amount.parseToString(),
+            amount = model.amountMinors.stringRepresentation(),
             currency = mapCurrencySymbol(model.currency),
             sign = mapDirection(model.direction),
             merchant = model.merchant,
@@ -42,7 +41,7 @@ import javax.inject.Inject
      * Ideally this logic should be moved to separate class
      * */
     private fun mapDateTime(dateTime: LocalDateTime): String {
-        val formatter = DateTimeFormatter.ofPattern("DD-MM-yyyy HH:mm")
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm")
         return dateTime.format(formatter)
     }
 

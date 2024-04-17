@@ -9,7 +9,7 @@ interface SavingGoalsRepository {
         savingGoalUid: String,
         transferUid: String,
         currency: String,
-        moneyToAdd: Double,
+        moneyToAdd: Long,
     ): Result<Unit>
 
     suspend fun fetchSavingGoals(accountUid: String): Result<List<SavingGoal>>

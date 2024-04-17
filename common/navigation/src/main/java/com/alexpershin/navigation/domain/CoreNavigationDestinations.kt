@@ -11,7 +11,7 @@ sealed interface CoreNavigationDestinations : NavigationCommand {
         override val route: String = "feed"
     }
 
-    data class SavingGoals(val amount: Double) : CoreNavigationDestinations {
+    data class SavingGoals(val amount: Long) : CoreNavigationDestinations {
 
         override val arguments: List<NamedNavArgument> = navArguments
 
@@ -27,7 +27,7 @@ sealed interface CoreNavigationDestinations : NavigationCommand {
                 }
             )
 
-            fun navigate(amount: Double): NavigationCommand = SavingGoals(amount)
+            fun navigate(amount: Long): NavigationCommand = SavingGoals(amount)
         }
     }
 }

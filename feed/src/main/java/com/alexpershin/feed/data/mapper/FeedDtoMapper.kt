@@ -1,7 +1,6 @@
 package com.alexpershin.feed.data.mapper
 
 import com.alexpershin.core.mapper.BaseModelMapper
-import com.alexpershin.feed.data.model.FeedResponse
 import com.alexpershin.feed.data.model.FeedResponse.FeedDto
 import com.alexpershin.feed.domain.model.Feed
 import java.time.LocalDateTime
@@ -14,7 +13,7 @@ internal class FeedDtoMapper @Inject constructor() : BaseModelMapper<FeedDto, Fe
     override fun map(dto: FeedDto): Feed {
         return Feed(
             id = dto.feedItemUid,
-            amount = dto.amount.minorUnits / 100.0,
+            amountMinors = dto.amount.minorUnits,
             currency = dto.amount.currency,
             direction = mapDirection(dto.direction),
             merchant = dto.counterPartyName,

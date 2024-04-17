@@ -100,7 +100,7 @@ class FeedScreenTest : UiComposeTestBase() {
     @Test
     fun GIVEN_FeedScreen_with_items_THEN_assert_round_up_banner_displayed() {
         // given
-        val weekRoundUp = 25.23
+        val weekRoundUp = 2523L
         coEvery { getFeedUseCase.execute() } returns value(Result.success(feedItems))
         coEvery { roundUpUseCase.execute(any()) } returns value(weekRoundUp)
 
@@ -121,7 +121,7 @@ class FeedScreenTest : UiComposeTestBase() {
         private val feedItems: List<Feed> = (1..5).map {
             Feed(
                 id = it.toString(),
-                amount = Random.nextDouble(),
+                amountMinors = Random.nextLong(),
                 currency = "GBP",
                 direction = Feed.Direction.In,
                 merchant = "Asda",

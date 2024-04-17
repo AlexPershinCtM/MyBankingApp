@@ -14,10 +14,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Home
-import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +35,7 @@ import com.alexpershin.feed.presentation.FeedUiContract.UiState
 import com.alexpershin.feed.presentation.FeedViewModel
 import com.alexpershin.feed.presentation.model.FeedUiModel
 import com.alexpershin.ui.components.Components
+import com.alexpershin.ui.lifecycle.ResumeHandler
 import com.alexpershin.ui.spacings
 import com.alexpershin.ui.theme.MyStarlingAppTheme
 import com.google.accompanist.swiperefresh.SwipeRefresh
@@ -50,6 +51,10 @@ fun FeedScreen(
 
     BackHandler {
         viewModel.onUiEvent(UiEvents.BackPressed)
+    }
+
+    ResumeHandler {
+        viewModel.onUiEvent(UiEvents.OnResume)
     }
 
     FeedContent(

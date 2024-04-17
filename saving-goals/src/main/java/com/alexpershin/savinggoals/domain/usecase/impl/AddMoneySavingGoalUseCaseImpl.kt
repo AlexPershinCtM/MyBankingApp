@@ -10,7 +10,7 @@ internal class AddMoneySavingGoalUseCaseImpl @Inject constructor(
     private val repository: SavingGoalsRepository,
     private val securePreferences: SecurePreferences
 ) : AddMoneySavingGoalUseCase {
-    override suspend fun execute(id: String, currency: String, moneyToAdd: Double): Result<Unit> {
+    override suspend fun execute(id: String, currency: String, moneyToAdd: Long): Result<Unit> {
         val accountUid = securePreferences.accountUid
         val transferUid = generateTransferUid()
 

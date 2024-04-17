@@ -1,9 +1,10 @@
 package com.alexpershin.feed.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.alexpershin.core.extentions.parseToString
 import com.alexpershin.core.logging.ErrorLogger
 import com.alexpershin.feed.R
+import com.alexpershin.feed.domain.model.AmountMinors
+import com.alexpershin.feed.domain.model.stringRepresentation
 import com.alexpershin.feed.domain.usecase.GetFeedUseCase
 import com.alexpershin.feed.domain.usecase.RoundUpUseCase
 import com.alexpershin.feed.presentation.mapper.FeedUiModelMapper
@@ -30,7 +31,7 @@ internal class FeedViewModel @Inject constructor(
 
     ) : FeedUiContract.ViewModel() {
 
-    private var weekRoundUpAmount: Double? = null
+    private var weekRoundUpAmountMinors: AmountMinors? = null
 
     private val TAG = FeedViewModel::class.simpleName.toString()
 
@@ -41,27 +42,21 @@ internal class FeedViewModel @Inject constructor(
         handleFailure(throwable)
     }
 
-    init {
-        viewModelScope.launch(coroutineExceptionHandler) {
-            fetchFeed()
-        }
-    }
-
     private suspend fun fetchFeed() {
         updateUiState { it.copy(isLoading = true) }
         val feedItemsResult = getFeedUseCase.execute()
 
         feedItemsResult
             .onSuccess { items ->
-                val roundUpAmount = roundUpUseCase.execute(items.map { it.amount }).also {
-                    this.weekRoundUpAmount = it
+                val roundUpAmount = roundUpUseCase.execute(items.map { it.amountMinors }).also {
+                    this.weekRoundUpAmountMinors = it
                 }
 
                 val mappedItems =
                     items.asSequence().map { feedUiModelMapper.map(it) }.toPersistentList()
                 updateUiState {
                     it.copy(
-                        roundUpAmount = roundUpAmount.parseToString(),
+                        roundUpAmount = roundUpAmount.stringRepresentation(),
                         isLoading = false,
                         feedItems = mappedItems,
                         errorMessage = null
@@ -104,7 +99,7 @@ internal class FeedViewModel @Inject constructor(
                 viewModelScope.launch {
                     navigationHandler.navigate(
                         CoreNavigationDestinations.SavingGoals.navigate(
-                            requireNotNull(weekRoundUpAmount)
+                            requireNotNull(weekRoundUpAmountMinors)
                         )
                     )
                 }
@@ -123,6 +118,12 @@ internal class FeedViewModel @Inject constructor(
             }
 
             FeedUiContract.UiEvents.PullToRefresh -> {
+                viewModelScope.launch(coroutineExceptionHandler) {
+                    fetchFeed()
+                }
+            }
+
+            FeedUiContract.UiEvents.OnResume -> {
                 viewModelScope.launch(coroutineExceptionHandler) {
                     fetchFeed()
                 }

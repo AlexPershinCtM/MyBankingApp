@@ -50,13 +50,13 @@ internal class SavingGoalsRepositoryImpl @Inject constructor(
         savingGoalUid: String,
         transferUid: String,
         currency: String,
-        moneyToAdd: Double,
+        moneyToAdd: Long,
     ): Result<Unit> {
         return try {
             val requestBody = AddMoneyBody(
                 amount = AddMoneyBody.Amount(
                     currency = currency,
-                    minorUnits = (moneyToAdd * 100).toLong()
+                    minorUnits = moneyToAdd
                 ),
             )
 

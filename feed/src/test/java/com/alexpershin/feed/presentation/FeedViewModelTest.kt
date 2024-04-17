@@ -68,16 +68,17 @@ internal class FeedViewModelTest {
                 every { feedUiModelMapper.map(item) } returns feedUiModels[index]
             }
 
-            coEvery { roundUpUseCase.execute(any()) } returns 25.5
+            coEvery { roundUpUseCase.execute(any()) } returns 2550
 
             // when
             createSut()
+            sut.onUiEvent(FeedUiContract.UiEvents.OnResume)
             advanceUntilIdle()
 
             // then
             with(sut.uiState.value) {
                 assertFalse(isLoading)
-                assertEquals("25,50", roundUpAmount)
+                assertEquals("25.50", roundUpAmount)
                 assertEquals(feedUiModels, feedItems)
                 assertNull(errorMessage)
             }
@@ -93,6 +94,7 @@ internal class FeedViewModelTest {
 
             // when
             createSut()
+            sut.onUiEvent(FeedUiContract.UiEvents.OnResume)
             advanceUntilIdle()
 
             // then
@@ -114,6 +116,7 @@ internal class FeedViewModelTest {
 
             // when
             createSut()
+            sut.onUiEvent(FeedUiContract.UiEvents.OnResume)
             advanceUntilIdle()
 
             // then
@@ -135,6 +138,7 @@ internal class FeedViewModelTest {
 
             // when
             createSut()
+            sut.onUiEvent(FeedUiContract.UiEvents.OnResume)
             advanceUntilIdle()
 
             // then
@@ -199,13 +203,14 @@ internal class FeedViewModelTest {
     fun `GIVEN sut is created, WHEN RoundUpBannerClicked event received, THEN call navigator`() =
         runTest {
             // given
-            val amountToRoundUp = 24.32
+            val amountToRoundUp = 2432L
             val feedList = listOf<Feed>(mockk(relaxed = true), mockk(relaxed = true))
 
             coEvery { getFeedUseCase.execute() } returns Result.success(feedList)
             coEvery { roundUpUseCase.execute(any()) } returns amountToRoundUp
 
             createSut()
+            sut.onUiEvent(FeedUiContract.UiEvents.OnResume)
             advanceUntilIdle()
 
 

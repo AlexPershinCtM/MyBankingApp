@@ -27,7 +27,7 @@ class FeedDtoMapperTest {
 
         val expected = Feed(
             id = "id",
-            amount = 14.54,
+            amountMinors = 1454,
             currency = "GBP",
             direction = Feed.Direction.Out,
             merchant = "Asda",
@@ -59,7 +59,7 @@ class FeedDtoMapperTest {
 
         val expected = Feed(
             id = "id",
-            amount = 300.0,
+            amountMinors = 30000,
             currency = "GBP",
             direction = Feed.Direction.Out,
             merchant = "Asda",
@@ -91,7 +91,7 @@ class FeedDtoMapperTest {
 
         val expected = Feed(
             id = "id",
-            amount = 300.0,
+            amountMinors = 30000,
             currency = "GBP",
             direction = Feed.Direction.Out,
             merchant = "Asda",
@@ -123,7 +123,7 @@ class FeedDtoMapperTest {
 
         val expected = Feed(
             id = "id",
-            amount = 300.0,
+            amountMinors = 30000,
             currency = "GBP",
             direction = Feed.Direction.In,
             merchant = "Asda",

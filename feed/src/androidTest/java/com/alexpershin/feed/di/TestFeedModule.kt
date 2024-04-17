@@ -26,6 +26,6 @@ object TestFeedModule {
     @Provides
     @Singleton
     internal fun bindRoundUpUseCase(): RoundUpUseCase = mockk(relaxed = true) {
-        coEvery { execute(any()) } returns 5.5
+        coEvery { execute(any()) } returns 550
     }
 }
