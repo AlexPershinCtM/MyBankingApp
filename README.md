@@ -13,11 +13,20 @@ The screen presents the most recent transactions, including details such as the 
 The screen exhibits a list of saving goals, showcasing details such as the goal name, total saved amount, and target. It effectively manages success messages, scenarios where there are no goals listed, and error states. Users are empowered to transfer the roundup amount to any goal or create a new saving goal by simply clicking on the designated button.
 
 ### How to build app?
-Before building app you need to create your Sandbox Customer first. Then update `local.properties` file with secrets:
+Before building app you need to create your Sandbox Customer first - https://developer.starlingbank.com/sandbox/select. 
+Once Sandbox Customer is created use it's data to update `local.properties` file with secrets:
 
-- `accountUid="YOUR_STARLING_ACCOUNT_UID"` can be found in Accounts API json response on Sandbox page
+- `accountUid="YOUR_STARLING_ACCOUNT_UID"` can be found in Accounts API json response on Sandbox pag
 - `defaultCategory="YOUR_DEFAULT_CATEGORY"` can be found in Accounts API json response on Sandbox page
+
+![image](https://github.com/AlexPershinCtM/MyBankingApp/assets/79848638/e4cb7e5a-445d-4abe-af6f-083844d0b209)
+
+  
 - `accessToken="YOUR_STARLING_ACCESS_TOKEN` can be found in Customer Details on Sandbox page
+
+  ![image](https://github.com/AlexPershinCtM/MyBankingApp/assets/79848638/1a6d45f1-c796-4cb0-a135-92fd51223415)
+
+
 
 To simulate some transactions use Postman or Auto-simulator feature on the bottom of Sandbox web page.
 
