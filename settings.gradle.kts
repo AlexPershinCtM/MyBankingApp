@@ -16,7 +16,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "MyStarlingApp"
+rootProject.name = "MyBankingApp"
 include(":app")
 include(":feed")
 include(":saving-goals")
